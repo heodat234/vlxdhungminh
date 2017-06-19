@@ -85,7 +85,7 @@
                         </div>
                         <div class="body">
                             <div id="real_time_chart" class="dashboard-flot-chart">
-                            	1231231
+                                1231231
                             </div>
                         </div>
                     </div>
@@ -287,26 +287,50 @@
                 </div>
                 <!-- #END# Task Info -->
                 <!-- Browser Usage -->
+ {{--                @foreach($MostViewProduct as $pro)
+                    
+                @endforeach --}}  
                 <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <div class="card">
                         <div class="header">
                             <h2>BROWSER USAGE</h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
-                        <div class="body">
-                            <div id="donut_chart" class="dashboard-donut-chart"></div>
-                        </div>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script type="text/javascript">
+                        var array = new Array();
+                        var view = new Array();
+                        var percent = new Array();
+                        var i=0;
+                        var tong=0;
+                        var total_view={{$Total_view}};
+                            @foreach($MostViewProduct as $pro) {
+                                    array[i]="{{$pro->name}}";
+                                    view[i]=({{$pro->view}});
+                                    tong=tong+view[i];
+                                    i++;}
+                            @endforeach
+                          google.charts.load("current", {packages:["corechart"]});
+                          google.charts.setOnLoadCallback(drawChart);
+                          function drawChart() {
+                            var data = google.visualization.arrayToDataTable([
+                              ['Task', 'Most View'],
+                              [array[0],view[0]],
+                              [array[1],view[1]],
+                              [array[2],view[2]],
+                              [array[3],view[3]],
+                              [array[4],view[4]],
+                              ["sản phẩm khác",total_view-tong]
+                            ]);
+                            var options = {
+                              title: 'Views',
+                              pieHole: 0.4,
+                            };
+
+                            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                            chart.draw(data, options);
+                          }
+                        </script>
+                          <div id="donutchart" style="widows: 500px;px; height: 500px;"></div>
                     </div>
                 </div>
                 <!-- #END# Browser Usage -->

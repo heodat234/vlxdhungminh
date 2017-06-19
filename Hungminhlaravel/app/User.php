@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -36,5 +37,21 @@ class User extends Authenticatable
 
     return $check;
     
-}
+    }
+    public static function User_All(){
+            $user=DB::table('users')->select();
+            return $user;
+    }
+    public static function Edit_User($id, $group){
+            $user=DB::table('users')->where('id','=',$id)->update(['group'=>$group]);
+            return $user;
+    }
+    public static function Insert_User($name,$email, $group){
+            $id=DB::table('users')->insertGetId(['full_name'=>$name,'email'=>$email,'group'=>$group]);
+            return $id;
+    }
+    public static function Delete_User($id){
+        $user=DB::table('users')->where('id','=',$id)->delete();
+        return $user;
+    }
 }

@@ -8026,4 +8026,15 @@ html.ie11 .dropdown-menu ul.menu li a {
 
 html.ie11 .bs-searchbox .form-control {
   width: 90%; }
-
+select.bs-select-hidden {
+  border: 0 none;
+  bottom: 0;
+  box-shadow: none;
+  color: white;
+  display: inline-block !important;
+  height: 0 !important;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 0;
+}

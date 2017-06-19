@@ -13,4 +13,8 @@ class BillDetail extends Model
     public function bills(){
     	return $this->belongsTo('App\Bill','id_bill','id');
     }
+    public static function Bill_All(){
+            $user=DB::table('bill_detail')->select();
+            return $user;
+    }
 }
